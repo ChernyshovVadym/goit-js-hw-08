@@ -64,5 +64,6 @@ const images = [
     },
 ];
 
-
+const gallery = document.querySelector(".gallery");
+for
 
