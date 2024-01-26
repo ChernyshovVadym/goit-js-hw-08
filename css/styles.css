@@ -1,0 +1,27 @@
+body {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.gallery {
+    width: auto;
+    margin: 0 auto;
+    padding: 24px 156px;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.gallery-image {
+    width: 360px;
+    height: 200px;
+}
+
+.gallery-image:hover {
+    transform: scale(1.06);
+}
