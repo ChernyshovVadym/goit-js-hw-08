@@ -64,6 +64,41 @@ const images = [
     },
 ];
 
-const gallery = document.querySelector(".gallery");
-for
+const gallery = document.querySelector("ul.gallery");
 
+const imagesMarkup = images.map(({ preview, original, description }) => `<li class="gallery-item">
+  <a class="gallery-link" href="${original}">
+    <img
+      class="gallery-image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+</li>`);
+
+gallery.insertAdjacentHTML("afterbegin", imagesMarkup.join("\n"));
+
+
+gallery.addEventListener("click", onImgClick);
+
+
+function onImgClick(event) {
+    event.preventDefault();
+
+    if (event.target === event.currentTarget) return;
+
+    const instance = basicLightbox.create(`
+    <img src="${event.target.getAttribute("data-source")}" width="800" height="600">
+  `, {
+        onClose: () => {
+            document.removeEventListener("keydown", onEscKeydown);
+        }
+    });
+
+    instance.show(() => document.addEventListener("keydown", onEscKeydown));
+
+    function onEscKeydown(event) {
+        if (event.code === "Escape") instance.close();
+    }
+}
